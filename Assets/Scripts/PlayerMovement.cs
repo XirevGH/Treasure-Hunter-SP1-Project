@@ -27,8 +27,8 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrounded;
     private bool canMove;
     private float rayDistance = 0.25f;
-    private int startingHealth = 5;
-    private int currentHealth = 0;
+    public int startingHealth = 5;
+    public int currentHealth = 0;
     private int goldCoinsCollected = 0;
     public int keysCollected = 0;
 
@@ -173,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void UpdateHealthBar()
+    public void UpdateHealthBar()
     {
         healthSlider.value = currentHealth;
 
