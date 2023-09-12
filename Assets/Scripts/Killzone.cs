@@ -11,8 +11,8 @@ public class Killzone : MonoBehaviour
         {
             other.transform.position = spawnPosition.position;
             other.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            other.GetComponent<PlayerMovement>().currentHealth = other.GetComponent<PlayerMovement>().startingHealth;
-            other.GetComponent<PlayerMovement>().UpdateHealthBar();
+            other.GetComponent<PlayerProperties>().currentHealth = other.GetComponent<PlayerProperties>().startingHealth;
+            other.GetComponent<PlayerProperties>().UpdateHealthBar();
         }
     }
 }

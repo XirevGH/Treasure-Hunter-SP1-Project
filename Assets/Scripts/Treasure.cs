@@ -6,7 +6,7 @@ public class Treasure : MonoBehaviour
 {
     private Animator anim;
     public int treasureOpened = 0;
-    [SerializeField] private GameObject questCompleted;
+    [SerializeField] private GameObject questDeliver;
     [SerializeField] private GameObject activeQuest;
     [SerializeField] private GameObject treasureParticles;
 
@@ -20,12 +20,12 @@ public class Treasure : MonoBehaviour
     {
         if (treasureOpened == 0)
         {
-            questCompleted.SetActive(false);
+            questDeliver.SetActive(false);
         }
 
         if (treasureOpened == 1)
         {
-            questCompleted.SetActive(true);
+            questDeliver.SetActive(true);
             activeQuest.SetActive(false);
         }
 
@@ -33,7 +33,7 @@ public class Treasure : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.GetComponent<PlayerMovement>().keysCollected > 0)
+        if(other.GetComponent<PlayerProperties>().keysCollected > 0)
         {
             if (other.CompareTag("Player"))
             {

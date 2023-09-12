@@ -6,7 +6,7 @@ public class QuestGiver : MonoBehaviour
 {
     [SerializeField] private GameObject textPopUp;
     [SerializeField] private GameObject questUI;
-    public GameObject activeQuest;
+    [SerializeField] private GameObject activeQuest;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -41,15 +41,15 @@ public class EnemyPinkStarMovement : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerMovement>().TakeDamage(damageGiven);
+            other.gameObject.GetComponent<PlayerProperties>().TakeDamage(damageGiven);
 
             if(other.transform.position.x > transform.position.x)
             {
-                other.gameObject.GetComponent<PlayerMovement>().TakeKnockBack(giveKnocbackForceH, giveKnockbackForceV);
+                other.gameObject.GetComponent<PlayerProperties>().TakeKnockBack(giveKnocbackForceH, giveKnockbackForceV);
             }
             else
             {
-                other.gameObject.GetComponent<PlayerMovement>().TakeKnockBack(-giveKnocbackForceH, giveKnockbackForceV);
+                other.gameObject.GetComponent<PlayerProperties>().TakeKnockBack(-giveKnocbackForceH, giveKnockbackForceV);
             }
         }
     }

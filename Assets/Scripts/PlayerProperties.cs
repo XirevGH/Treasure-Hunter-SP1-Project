@@ -6,13 +6,14 @@ using UnityEngine.UIElements;
 using UnityEngine.UI;
 using TMPro;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerProperties : MonoBehaviour
 {
     [SerializeField] private float jumpForce = 300f;
     [SerializeField] private float moveSpeed = 1f;
-    [SerializeField] private Transform leftFoot, rightFoot;
+    [SerializeField] private Transform leftFoot, rightFoot, leftHand, rightHand;
     [SerializeField] private Transform spawnPosition;
     [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private LayerMask whatIsChain;
     [SerializeField] private AudioClip coinPickup, healthPickup;
     [SerializeField] private AudioClip[] jumpSounds;
     [SerializeField] private GameObject coinParticles, jumpParticles, keyParticles;
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     
     private float horizontalValue;
     public bool isGrounded;
+    public bool isOnChain;
     private bool canMove;
     private float rayDistance = 0.25f;
     public int startingHealth = 5;
@@ -63,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
             FlipSprite(false);
         }
 
-        if (Input.GetButtonDown("Jump") && CheckIfGrounded() == true)
+        if (Input.GetButtonDown("Jump") && (CheckIfGrounded() == true || CheckIfOnChain() == true))
         {
             Jump();
         }
@@ -71,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("MoveSpeed", Mathf.Abs(rigidBody.velocity.x));
         anim.SetFloat("VerticalSpeed", rigidBody.velocity.y);
         anim.SetBool("IsGrounded", CheckIfGrounded());
+        anim.SetBool("IsOnChain", CheckIfOnChain());
     }
 
     private void FixedUpdate()
@@ -201,5 +204,18 @@ public class PlayerMovement : MonoBehaviour
             return false;
         }
     }
+    private bool CheckIfOnChain()
+    {
+        RaycastHit2D leftHit = Physics2D.Raycast(leftHand.position, Vector2.right, rayDistance, whatIsChain);
+        RaycastHit2D rightHit = Physics2D.Raycast(rightHand.position, Vector2.left, rayDistance, whatIsChain);
 
+        if (leftHit.collider != null && leftHit.collider.CompareTag("Chain") || rightHit.collider != null && rightHit.collider.CompareTag("Chain"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
