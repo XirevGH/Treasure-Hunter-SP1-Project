@@ -8,6 +8,7 @@ using TMPro;
 
 public class PlayerProperties : MonoBehaviour
 {
+    [SerializeField] private float climbSpeed = 10f;
     [SerializeField] private float jumpForce = 300f;
     [SerializeField] private float moveSpeed = 1f;
     [SerializeField] private Transform leftFoot, rightFoot, leftHand, rightHand;
@@ -23,7 +24,13 @@ public class PlayerProperties : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Image healthBarColor;
     [SerializeField] private Color greenHealth, redHealth;
     [SerializeField] private TMP_Text goldCoinsText;
+
+
     
+
+    private bool isClimbing;
+
+    private float verticalValue;
     private float horizontalValue;
     public bool isGrounded;
     public bool isOnChain;
@@ -74,6 +81,8 @@ public class PlayerProperties : MonoBehaviour
         anim.SetFloat("VerticalSpeed", rigidBody.velocity.y);
         anim.SetBool("IsGrounded", CheckIfGrounded());
         anim.SetBool("IsOnChain", CheckIfOnChain());
+
+        anim.SetFloat("Vertical", verticalValue);
     }
 
     private void FixedUpdate()
@@ -84,6 +93,18 @@ public class PlayerProperties : MonoBehaviour
         }
 
         rigidBody.velocity = new Vector2(horizontalValue * moveSpeed * Time.deltaTime, rigidBody.velocity.y);
+        
+        verticalValue = Input.GetAxis("Vertical");
+
+        if (CheckIfOnChain())
+        {
+            rigidBody.gravityScale = 0f;
+            rigidBody.velocity = new Vector2(0, verticalValue * climbSpeed);
+        }
+        else
+        {
+            rigidBody.gravityScale = 2f;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -206,10 +227,33 @@ public class PlayerProperties : MonoBehaviour
     }
     private bool CheckIfOnChain()
     {
+        if (CheckIfChain() && Mathf.Abs(verticalValue) > 0f)
+        {
+            isClimbing = true;
+            return true;
+        }
+        else if (CheckIfChain() && isClimbing)
+        {
+            return true;
+        }
+        else if (!CheckIfChain() && isClimbing)
+        {
+            Input.ResetInputAxes();
+            isClimbing = false;
+            return false;
+        }
+        else 
+        {
+            
+            isClimbing = false;
+            return false; 
+        }
+    }
+    private bool CheckIfChain()
+    {
         RaycastHit2D leftHit = Physics2D.Raycast(leftHand.position, Vector2.right, rayDistance, whatIsChain);
         RaycastHit2D rightHit = Physics2D.Raycast(rightHand.position, Vector2.left, rayDistance, whatIsChain);
-
-        if (leftHit.collider != null && leftHit.collider.CompareTag("Chain") || rightHit.collider != null && rightHit.collider.CompareTag("Chain"))
+        if (leftHit.collider != null && leftHit.collider.CompareTag("Chain") && rightHit.collider != null && rightHit.collider.CompareTag("Chain"))
         {
             return true;
         }
