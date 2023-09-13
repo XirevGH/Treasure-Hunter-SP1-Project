@@ -82,7 +82,6 @@ public class PlayerProperties : MonoBehaviour
         anim.SetBool("IsGrounded", CheckIfGrounded());
         anim.SetBool("IsOnChain", CheckIfOnChain());
 
-        anim.SetFloat("Vertical", verticalValue);
     }
 
     private void FixedUpdate()
@@ -244,7 +243,6 @@ public class PlayerProperties : MonoBehaviour
         }
         else 
         {
-            
             isClimbing = false;
             return false; 
         }
