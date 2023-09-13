@@ -4856,7 +4856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8d6e39d65733f4ea3238820ca958f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  climbSpeed: 1
+  climbSpeed: 3
   jumpForce: 400
   moveSpeed: 150
   leftFoot: {fileID: 1118469105}
