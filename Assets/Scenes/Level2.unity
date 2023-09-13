@@ -3248,7 +3248,7 @@ Transform:
   m_GameObject: {fileID: 313428527}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.256, y: 0.73, z: 0}
+  m_LocalPosition: {x: -0.006, y: 0.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4703,7 +4703,6 @@ GameObject:
   - component: {fileID: 489597843}
   - component: {fileID: 489597844}
   - component: {fileID: 489597845}
-  - component: {fileID: 489597846}
   - component: {fileID: 489597847}
   m_Layer: 9
   m_Name: Player
@@ -4857,6 +4856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8d6e39d65733f4ea3238820ca958f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  climbSpeed: 1
   jumpForce: 400
   moveSpeed: 150
   leftFoot: {fileID: 1118469105}
@@ -5006,20 +5006,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &489597846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 489597838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad627cd327edfad49afe11ba1fdfae7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  climbSpeed: 6
-  rb: {fileID: 489597839}
 --- !u!114 &489597847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45922,7 +45908,7 @@ Transform:
   m_GameObject: {fileID: 1305100848}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.233, y: 0.73, z: 0}
+  m_LocalPosition: {x: 0.017, y: 0.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -87952,6 +87938,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5836294873348497574, guid: aa91eaa6238dd614faa5b823bb34ef58, type: 3}
+      propertyPath: activeQuest
+      value: 
+      objectReference: {fileID: 462514134}
+    - target: {fileID: 5836294873348497574, guid: aa91eaa6238dd614faa5b823bb34ef58, type: 3}
+      propertyPath: questDeliver
+      value: 
+      objectReference: {fileID: 1807674753}
+    - target: {fileID: 5836294873348497574, guid: aa91eaa6238dd614faa5b823bb34ef58, type: 3}
       propertyPath: questCompleted
       value: 
       objectReference: {fileID: 1807674753}
@@ -88592,7 +88586,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -17.13295, y: -1.3390403}
+  m_Offset: {x: -17.13963, y: -1.3390403}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -88603,7 +88597,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3650589, y: 3.8293524}
+  m_Size: {x: 0.08450508, y: 3.8293524}
   m_EdgeRadius: 0
 --- !u!61 &1869753679
 BoxCollider2D:
