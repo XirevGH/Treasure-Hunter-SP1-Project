@@ -253,12 +253,10 @@ public class PlayerProperties : MonoBehaviour
         RaycastHit2D rightHit = Physics2D.Raycast(rightHand.position, Vector2.left, rayDistance, whatIsChain);
         if (leftHit.collider != null && leftHit.collider.CompareTag("Chain") && rightHit.collider != null && rightHit.collider.CompareTag("Chain"))
         {
-            print(true);
             return true;
         }
         else
         {
-            print(false);
             return false;
         }
     }
