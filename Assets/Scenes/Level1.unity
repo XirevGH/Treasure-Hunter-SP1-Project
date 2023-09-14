@@ -63025,6 +63025,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 266344248}
     - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: spawnPosition
+      value: 
+      objectReference: {fileID: 197321683}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
       propertyPath: healthBarColor
       value: 
       objectReference: {fileID: 118327547}
