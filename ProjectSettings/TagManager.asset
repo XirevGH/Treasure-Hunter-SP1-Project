@@ -15,6 +15,7 @@ TagManager:
   - QuestChecker
   - Killzone
   - Chain
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - PickUp
   - Platform
   - Chain
-  - 
+  - Wall
   - 
   - 
   - 

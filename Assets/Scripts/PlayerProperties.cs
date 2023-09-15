@@ -11,13 +11,22 @@ public class PlayerProperties : MonoBehaviour
     [SerializeField] private float climbSpeed = 10f;
     [SerializeField] private float jumpForce = 300f;
     [SerializeField] private float moveSpeed = 1f;
-    [SerializeField] private Transform leftFoot, rightFoot, leftHand, rightHand;
+    [SerializeField] private Transform leftFoot, rightFoot, leftHand, rightHand, leftSwordWall, rightSwordWall;
     [SerializeField] private Transform spawnPosition;
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private LayerMask whatIsChain;
     [SerializeField] private AudioClip coinPickup, healthPickup;
     [SerializeField] private AudioClip[] jumpSounds;
     [SerializeField] private GameObject coinParticles, jumpParticles, keyParticles;
+
+    //WallJump
+    private bool wallCanJumpLeft;
+    private bool wallCanJumpRight;
+    public bool isWallSliding;
+    [SerializeField] private float wallSlideSpeed = 0.5f;
+    [SerializeField] private float wallHJumpForce = 200f;
+    [SerializeField] private float wallVJumpForce = 200f;
+    [SerializeField] private LayerMask whatIsWall;
 
     //Canvas
     [SerializeField] private UnityEngine.UI.Slider healthSlider;
@@ -26,7 +35,7 @@ public class PlayerProperties : MonoBehaviour
     [SerializeField] private TMP_Text goldCoinsText;
 
 
-    
+
 
     private bool isClimbing;
 
@@ -72,16 +81,28 @@ public class PlayerProperties : MonoBehaviour
             FlipSprite(false);
         }
 
+        OnWallDoNotFlipSprite();
+
         if (Input.GetButtonDown("Jump") && (CheckIfGrounded() == true || CheckIfOnChain() == true))
         {
             Jump();
+        }
+
+        if(Input.GetButtonDown("Jump") && CheckIfOnWall() && horizontalValue < 0 && wallCanJumpLeft == true)
+        {
+            WallJumpLeft();
+        }
+
+        if (Input.GetButtonDown("Jump") && CheckIfOnWall() && horizontalValue > 0 && wallCanJumpRight == true)
+        {
+            WallJumpRight();
         }
 
         anim.SetFloat("MoveSpeed", Mathf.Abs(rigidBody.velocity.x));
         anim.SetFloat("VerticalSpeed", rigidBody.velocity.y);
         anim.SetBool("IsGrounded", CheckIfGrounded());
         anim.SetBool("IsOnChain", CheckIfOnChain());
-
+        anim.SetBool("IsOnWall", CheckIfOnWall());
     }
 
     private void FixedUpdate()
@@ -103,6 +124,13 @@ public class PlayerProperties : MonoBehaviour
         else
         {
             rigidBody.gravityScale = 2f;
+        }
+
+        if (CheckIfOnWall())
+        {  
+            rigidBody.gravityScale = wallSlideSpeed;
+            rigidBody.velocity = new Vector2(0, -rigidBody.gravityScale);
+            rigidBody.freezeRotation = true;
         }
     }
 
@@ -142,6 +170,17 @@ public class PlayerProperties : MonoBehaviour
         int RandomValue = Random.Range(0, jumpSounds.Length);
         audioSource.PlayOneShot(jumpSounds[RandomValue], 0.25f);
         Instantiate(jumpParticles, transform.position, jumpParticles.transform.localRotation);
+    }
+
+    private void WallJumpRight()
+    {
+        rigidBody.AddForce(new Vector2(wallHJumpForce, wallVJumpForce));
+    }
+
+    private void WallJumpLeft()
+    {
+        rigidBody.AddForce(new Vector2(-wallHJumpForce, wallVJumpForce));
+
     }
 
     public void TakeDamage(int damageAmount)
@@ -258,6 +297,42 @@ public class PlayerProperties : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    private bool CheckIfOnWall()
+    {
+        RaycastHit2D leftHit = Physics2D.Raycast(leftSwordWall.position, Vector2.left, rayDistance, whatIsWall);
+        RaycastHit2D rightHit = Physics2D.Raycast(rightSwordWall.position, Vector2.right, rayDistance, whatIsWall);
+
+        if (leftHit.collider != null && leftHit.collider.CompareTag("Wall") || rightHit.collider !=null && rightHit.collider.CompareTag("Wall"))
+        {
+            isWallSliding = true;
+            return true;
+        }
+        else
+        {
+            isWallSliding = false;
+            return false;
+        }
+    }
+
+    private void OnWallDoNotFlipSprite()
+    {
+        RaycastHit2D leftHit = Physics2D.Raycast(leftSwordWall.position, Vector2.left, rayDistance, whatIsWall);
+        RaycastHit2D rightHit = Physics2D.Raycast(rightSwordWall.position, Vector2.right, rayDistance, whatIsWall);
+
+        if (leftHit.collider != null && leftHit.collider.CompareTag("Wall"))
+        {
+            spriteRenderer.flipX = true;
+            wallCanJumpRight = true;
+            wallCanJumpLeft = false;
+        }
+        if (rightHit.collider != null && rightHit.collider.CompareTag("Wall"))
+        {
+            spriteRenderer.flipX = false;
+            wallCanJumpLeft = true;
+            wallCanJumpRight = false;
         }
     }
 }
