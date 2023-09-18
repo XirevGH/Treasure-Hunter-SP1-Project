@@ -91460,9 +91460,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 197321683}
     - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: chainJumpForce
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
       propertyPath: healthBarColor
       value: 
       objectReference: {fileID: 118327547}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: chainLJumpForce
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: chainRJumpForce
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 5723723831644010790, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
       propertyPath: m_LocalPosition.x
       value: -43.83

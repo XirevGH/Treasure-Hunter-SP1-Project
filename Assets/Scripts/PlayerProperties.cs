@@ -28,6 +28,9 @@ public class PlayerProperties : MonoBehaviour
     [SerializeField] private float wallVJumpForce = 200f;
     [SerializeField] private LayerMask whatIsWall;
 
+    //ChainJump
+    [SerializeField] private float chainJumpForce = 200f;
+
     //Canvas
     [SerializeField] private UnityEngine.UI.Slider healthSlider;
     [SerializeField] private UnityEngine.UI.Image healthBarColor;
@@ -68,7 +71,6 @@ public class PlayerProperties : MonoBehaviour
     }
     void Update()
     {
-
         horizontalValue = Input.GetAxis("Horizontal");
 
         if (horizontalValue < 0)
@@ -83,11 +85,18 @@ public class PlayerProperties : MonoBehaviour
 
         OnWallDoNotFlipSprite();
 
-        if (Input.GetButtonDown("Jump") && (CheckIfGrounded() == true || CheckIfOnChain() == true))
+        if (Input.GetButtonDown("Jump") && CheckIfGrounded() == true)
         {
             Jump();
         }
 
+        if(Input.GetButtonDown("Jump") && CheckIfOnChain())
+        {
+            rigidBody.gravityScale = 2f;
+            isClimbing = false;
+            Jump();
+
+        }
         if(Input.GetButtonDown("Jump") && CheckIfOnWall() && horizontalValue < 0 && wallCanJumpLeft == true)
         {
             WallJumpLeft();
@@ -113,8 +122,15 @@ public class PlayerProperties : MonoBehaviour
         }
 
         rigidBody.velocity = new Vector2(horizontalValue * moveSpeed * Time.deltaTime, rigidBody.velocity.y);
-        
+
         verticalValue = Input.GetAxis("Vertical");
+
+        if (CheckIfOnWall())
+        {
+            rigidBody.gravityScale = wallSlideSpeed;
+            rigidBody.velocity = new Vector2(0, -rigidBody.gravityScale);
+            rigidBody.freezeRotation = true;
+        }
 
         if (CheckIfOnChain())
         {
@@ -124,13 +140,6 @@ public class PlayerProperties : MonoBehaviour
         else
         {
             rigidBody.gravityScale = 2f;
-        }
-
-        if (CheckIfOnWall())
-        {  
-            rigidBody.gravityScale = wallSlideSpeed;
-            rigidBody.velocity = new Vector2(0, -rigidBody.gravityScale);
-            rigidBody.freezeRotation = true;
         }
     }
 
@@ -172,6 +181,15 @@ public class PlayerProperties : MonoBehaviour
         Instantiate(jumpParticles, transform.position, jumpParticles.transform.localRotation);
     }
 
+    private void ChainJump()
+    {
+        if (Input.GetButton("Horizontal"))
+        {
+            isClimbing = false;
+            rigidBody.AddForce(new Vector2(0, jumpForce));
+        }
+
+    }
     private void WallJumpRight()
     {
         rigidBody.AddForce(new Vector2(wallHJumpForce, wallVJumpForce));
@@ -180,7 +198,6 @@ public class PlayerProperties : MonoBehaviour
     private void WallJumpLeft()
     {
         rigidBody.AddForce(new Vector2(-wallHJumpForce, wallVJumpForce));
-
     }
 
     public void TakeDamage(int damageAmount)
@@ -265,7 +282,7 @@ public class PlayerProperties : MonoBehaviour
     }
     private bool CheckIfOnChain()
     {
-        if (CheckIfChain() && Mathf.Abs(verticalValue) > 0f)
+       if (CheckIfChain() && Mathf.Abs(verticalValue) > 0f)
         {
             isClimbing = true;
             return true;
