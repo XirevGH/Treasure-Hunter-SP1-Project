@@ -28,9 +28,6 @@ public class PlayerProperties : MonoBehaviour
     [SerializeField] private float wallVJumpForce = 200f;
     [SerializeField] private LayerMask whatIsWall;
 
-    //ChainJump
-    [SerializeField] private float chainJumpForce = 200f;
-
     //Canvas
     [SerializeField] private UnityEngine.UI.Slider healthSlider;
     [SerializeField] private UnityEngine.UI.Image healthBarColor;
