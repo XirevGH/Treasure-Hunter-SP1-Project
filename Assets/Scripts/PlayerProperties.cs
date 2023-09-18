@@ -90,7 +90,7 @@ public class PlayerProperties : MonoBehaviour
             Jump();
         }
 
-        if(Input.GetButtonDown("Jump") && CheckIfOnChain())
+        if(Input.GetButtonDown("Jump") && CheckIfOnChain() && verticalValue == 0)
         {
             rigidBody.gravityScale = 2f;
             isClimbing = false;
