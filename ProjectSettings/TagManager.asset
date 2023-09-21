@@ -16,6 +16,7 @@ TagManager:
   - Killzone
   - Chain
   - Wall
+  - Flag
   layers:
   - Default
   - TransparentFX

@@ -12,7 +12,7 @@ public class PlayerProperties : MonoBehaviour
     [SerializeField] private float jumpForce = 300f;
     [SerializeField] private float moveSpeed = 1f;
     [SerializeField] private Transform leftFoot, rightFoot, leftHand, rightHand, leftSwordWall, rightSwordWall;
-    [SerializeField] private Transform spawnPosition;
+    public Transform spawnPosition;
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private LayerMask whatIsChain;
     [SerializeField] private AudioClip coinPickup, healthPickup;
