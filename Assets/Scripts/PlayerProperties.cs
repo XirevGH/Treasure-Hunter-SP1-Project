@@ -15,9 +15,9 @@ public class PlayerProperties : MonoBehaviour
     public Transform spawnPosition;
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private LayerMask whatIsChain;
-    [SerializeField] private AudioClip coinPickup, healthPickup;
+    [SerializeField] private AudioClip coinPickup, healthPickup, powerUpPickup;
     [SerializeField] private AudioClip[] jumpSounds;
-    [SerializeField] private GameObject coinParticles, jumpParticles, keyParticles;
+    [SerializeField] private GameObject coinParticles, jumpParticles, keyParticles, powerUpParticles;
 
     //WallJump
     private bool wallCanJumpLeft;
@@ -162,6 +162,22 @@ public class PlayerProperties : MonoBehaviour
             Destroy(other.gameObject);
             keysCollected++;
             Instantiate(keyParticles, other.transform.position, Quaternion.identity);
+        }
+
+        if (other.CompareTag("PowerUpJump"))
+        {
+            jumpForce = jumpForce * 1.15f;
+            PowerUp(other.gameObject);
+        }
+        if (other.CompareTag("PowerUpRun"))
+        {
+            moveSpeed = moveSpeed * 1.1f;
+            PowerUp(other.gameObject);
+        }
+        if (other.CompareTag("PowerUpChainClimb"))
+        {
+            climbSpeed = climbSpeed * 1.1f;
+            PowerUp(other.gameObject);
         }
     }
 
@@ -348,5 +364,12 @@ public class PlayerProperties : MonoBehaviour
             wallCanJumpLeft = true;
             wallCanJumpRight = false;
         }
+    }
+
+    private void PowerUp(GameObject powerUp)
+    {
+        audioSource.PlayOneShot(powerUpPickup, 0.25f);
+        Instantiate(powerUpParticles, powerUp.transform.position, Quaternion.identity);
+        Destroy(powerUp);
     }
 }

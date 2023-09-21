@@ -17,6 +17,9 @@ TagManager:
   - Chain
   - Wall
   - Flag
+  - PowerUpJump
+  - PowerUpRun
+  - PowerUpChainClimb
   layers:
   - Default
   - TransparentFX
