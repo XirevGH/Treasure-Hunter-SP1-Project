@@ -17,6 +17,7 @@ public class PlayerProperties : MonoBehaviour
     [SerializeField] private AudioClip coinPickup, healthPickup, powerUpPickup;
     [SerializeField] private AudioClip[] jumpSounds;
     [SerializeField] private AudioClip[] walkSounds;
+    [SerializeField] private AudioClip[] chainSounds;
     [SerializeField] private GameObject coinParticles, jumpParticles, keyParticles, powerUpParticles;
 
     //WallJump
@@ -48,10 +49,15 @@ public class PlayerProperties : MonoBehaviour
     public int keysCollected = 0;
 
     //Walking sounds
-    private float futureTime;
-    private float currentTime;
-    private float intervalTime = 0.3f;
+    private float futureTimeWalk;
+    private float currentTimeWalk;
+    private float intervalTimeWalk = 0.3f;
     private int step = 0;
+
+    //Chain climbing sounds
+    private float futureTimeChain;
+    private float currentTimeChain;
+    private float intervalTimeChain = 0.4f;
 
     public Transform spawnPosition;
     private Rigidbody2D rigidBody;
@@ -61,8 +67,12 @@ public class PlayerProperties : MonoBehaviour
 
     void Start()
     {
-        futureTime = Time.time + intervalTime;
-        currentTime = Time.time;
+        futureTimeWalk = Time.time + intervalTimeWalk;
+        currentTimeWalk = Time.time;
+
+        futureTimeChain = Time.time + intervalTimeWalk;
+        currentTimeChain = Time.time;
+
         canMove = true;
         currentHealth = startingHealth;
         goldCoinsText.text = "" + goldCoinsCollected;
@@ -79,10 +89,10 @@ public class PlayerProperties : MonoBehaviour
         if (horizontalValue < 0)
         {
             FlipSprite(true);
-            currentTime = Time.time;
-            if ((currentTime >= futureTime) && CheckIfGrounded() && Mathf.Abs(rigidBody.velocity.x) > 0.1)
+            currentTimeWalk = Time.time;
+            if ((currentTimeWalk >= futureTimeWalk) && CheckIfGrounded() && Mathf.Abs(rigidBody.velocity.x) > 0.1)
             {
-                futureTime = Time.time + intervalTime;
+                futureTimeWalk = Time.time + intervalTimeWalk;
                 audioSource.PlayOneShot(walkSounds[step], 0.2f);
                 step++;
                 if (step > 1)
@@ -94,10 +104,10 @@ public class PlayerProperties : MonoBehaviour
         if (horizontalValue > 0)
         {
             FlipSprite(false);
-            currentTime = Time.time;
-            if ((currentTime >= futureTime) && CheckIfGrounded() && Mathf.Abs(rigidBody.velocity.x) > 0.1)
+            currentTimeWalk = Time.time;
+            if ((currentTimeWalk >= futureTimeWalk) && CheckIfGrounded() && Mathf.Abs(rigidBody.velocity.x) > 0.1)
             {
-                futureTime = Time.time + intervalTime;
+                futureTimeWalk = Time.time + intervalTimeWalk;
                 audioSource.PlayOneShot(walkSounds[step], 0.2f);
                 step++;
                 if (step > 1)
@@ -114,7 +124,7 @@ public class PlayerProperties : MonoBehaviour
             Jump();
         }
 
-        if(Input.GetButtonDown("Jump") && CheckIfOnChain() && verticalValue == 0)
+        if(Input.GetButtonDown("Jump") && CheckIfOnChain() && verticalValue == 0 && Mathf.Abs(horizontalValue) > 0)
         {
             rigidBody.gravityScale = 2f;
             isClimbing = false;
@@ -326,6 +336,14 @@ public class PlayerProperties : MonoBehaviour
     {
        if (CheckIfChain() && Mathf.Abs(verticalValue) > 0f)
         {
+            
+            currentTimeChain = Time.time;
+            if (currentTimeChain >= futureTimeChain && Mathf.Abs(rigidBody.velocity.y) > 0.1)
+            {
+                int RandomValue = Random.Range(0, chainSounds.Length);
+                audioSource.PlayOneShot(chainSounds[RandomValue], 0.2f);
+                futureTimeChain = Time.time + intervalTimeChain;
+            }
             isClimbing = true;
             return true;
         }

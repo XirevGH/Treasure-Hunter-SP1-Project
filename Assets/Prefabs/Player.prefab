@@ -179,7 +179,6 @@ MonoBehaviour:
   rightHand: {fileID: 6977484271806065202}
   leftSwordWall: {fileID: 821563937279551713}
   rightSwordWall: {fileID: 6699878098184213116}
-  spawnPosition: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 2112
@@ -196,6 +195,10 @@ MonoBehaviour:
   walkSounds:
   - {fileID: 8300000, guid: f01d15c552d1eeb439744507d25f704f, type: 3}
   - {fileID: 8300000, guid: 5be77927be6bf3c49843ed61eeb43fca, type: 3}
+  chainSounds:
+  - {fileID: 8300000, guid: b39a4f8dd925b1946b7d6243e190855d, type: 3}
+  - {fileID: 8300000, guid: 37a24b1d3186abf428c3bebd83d504a5, type: 3}
+  - {fileID: 8300000, guid: 1e2ebe84b4933ac4da054fcaedb424ac, type: 3}
   coinParticles: {fileID: 5442883628933148145, guid: 5db6b8967e6798649aea6d59144a1a32, type: 3}
   jumpParticles: {fileID: 8978283405621586154, guid: 653cf589042aa6c4da30542f9ab5d9bb, type: 3}
   keyParticles: {fileID: 5442883628933148145, guid: 669c3095606505a41992eaee6ef46327, type: 3}
@@ -215,6 +218,7 @@ MonoBehaviour:
   startingHealth: 5
   currentHealth: 0
   keysCollected: 0
+  spawnPosition: {fileID: 0}
 --- !u!95 &6637979727977561228
 Animator:
   serializedVersion: 5
@@ -346,6 +350,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SwimSpeed: 5
   rb: {fileID: 3301561432394223924}
+  waterSplash: {fileID: 0}
+  swimmingSound: {fileID: 0}
 --- !u!1 &1186251581721124926
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,7 +439,7 @@ Transform:
   m_GameObject: {fileID: 4873211811132237369}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.006, y: 0.73, z: 0}
+  m_LocalPosition: {x: -0.04, y: 0.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

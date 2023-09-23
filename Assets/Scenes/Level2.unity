@@ -89014,6 +89014,22 @@ PrefabInstance:
       propertyPath: chainRJumpForce
       value: 400
       objectReference: {fileID: 0}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: chainSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: chainSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: b39a4f8dd925b1946b7d6243e190855d, type: 3}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: chainSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 37a24b1d3186abf428c3bebd83d504a5, type: 3}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: chainSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1e2ebe84b4933ac4da054fcaedb424ac, type: 3}
     - target: {fileID: 5723723831644010790, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
       propertyPath: m_LocalPosition.x
       value: -43.83
