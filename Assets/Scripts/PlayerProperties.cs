@@ -17,6 +17,7 @@ public class PlayerProperties : MonoBehaviour
     [SerializeField] private LayerMask whatIsChain;
     [SerializeField] private AudioClip coinPickup, healthPickup, powerUpPickup;
     [SerializeField] private AudioClip[] jumpSounds;
+    [SerializeField] private AudioClip[] walkSounds;
     [SerializeField] private GameObject coinParticles, jumpParticles, keyParticles, powerUpParticles;
 
     //WallJump
@@ -34,21 +35,23 @@ public class PlayerProperties : MonoBehaviour
     [SerializeField] private Color greenHealth, redHealth;
     [SerializeField] private TMP_Text goldCoinsText;
 
-
-
-
     private bool isClimbing;
 
     private float verticalValue;
     private float horizontalValue;
-    public bool isGrounded;
-    public bool isOnChain;
+
     private bool canMove;
     private float rayDistance = 0.25f;
     public int startingHealth = 5;
     public int currentHealth = 0;
     private int goldCoinsCollected = 0;
     public int keysCollected = 0;
+
+    //Walking sounds
+    private float futureTime;
+    private float currentTime;
+    private float intervalTime = 0.3f;
+    private int step = 0;
 
     private Rigidbody2D rigidBody;
     private SpriteRenderer spriteRenderer;
@@ -57,6 +60,8 @@ public class PlayerProperties : MonoBehaviour
 
     void Start()
     {
+        futureTime = Time.time + intervalTime;
+        currentTime = Time.time;
         canMove = true;
         currentHealth = startingHealth;
         goldCoinsText.text = "" + goldCoinsCollected;
@@ -73,11 +78,32 @@ public class PlayerProperties : MonoBehaviour
         if (horizontalValue < 0)
         {
             FlipSprite(true);
+            currentTime = Time.time;
+            if ((currentTime >= futureTime) && CheckIfGrounded() && Mathf.Abs(rigidBody.velocity.x) > 0.1)
+            {
+                futureTime = Time.time + intervalTime;
+                audioSource.PlayOneShot(walkSounds[step], 0.2f);
+                step++;
+                if (step > 1)
+                {
+                    step = 0;
+                }
+            }
         }
-
         if (horizontalValue > 0)
         {
             FlipSprite(false);
+            currentTime = Time.time;
+            if ((currentTime >= futureTime) && CheckIfGrounded() && Mathf.Abs(rigidBody.velocity.x) > 0.1)
+            {
+                futureTime = Time.time + intervalTime;
+                audioSource.PlayOneShot(walkSounds[step], 0.2f);
+                step++;
+                if (step > 1)
+                {
+                    step = 0;
+                }
+            }   
         }
 
         OnWallDoNotFlipSprite();
