@@ -188,13 +188,18 @@ MonoBehaviour:
     m_Bits: 4096
   coinPickup: {fileID: 8300000, guid: a50cbfdafa28ec248a09cb21963c5e4e, type: 3}
   healthPickup: {fileID: 8300000, guid: 32daecfb47496d447b3a975d254723b2, type: 3}
+  powerUpPickup: {fileID: 0}
   jumpSounds:
   - {fileID: 8300000, guid: 63cb6e3f3a0151c4698bb47074cbbf4c, type: 3}
   - {fileID: 8300000, guid: fd4805bd898564f408fd3f14710819a9, type: 3}
   - {fileID: 8300000, guid: a032064663fbe5148b9781e8b70d3e1d, type: 3}
+  walkSounds:
+  - {fileID: 8300000, guid: f01d15c552d1eeb439744507d25f704f, type: 3}
+  - {fileID: 8300000, guid: 5be77927be6bf3c49843ed61eeb43fca, type: 3}
   coinParticles: {fileID: 5442883628933148145, guid: 5db6b8967e6798649aea6d59144a1a32, type: 3}
   jumpParticles: {fileID: 8978283405621586154, guid: 653cf589042aa6c4da30542f9ab5d9bb, type: 3}
   keyParticles: {fileID: 5442883628933148145, guid: 669c3095606505a41992eaee6ef46327, type: 3}
+  powerUpParticles: {fileID: 0}
   isWallSliding: 0
   wallSlideSpeed: 0.5
   wallHJumpForce: 200
@@ -207,8 +212,6 @@ MonoBehaviour:
   greenHealth: {r: 0.2787635, g: 0.9622642, b: 0.20425421, a: 1}
   redHealth: {r: 0.9811321, g: 0.124955505, b: 0.124955505, a: 1}
   goldCoinsText: {fileID: 0}
-  isGrounded: 0
-  isOnChain: 0
   startingHealth: 5
   currentHealth: 0
   keysCollected: 0
