@@ -11,19 +11,11 @@ public class PlayerWaterMovement : MonoBehaviour
     [SerializeField] private float SwimSpeed = 5f;
     [SerializeField] private Rigidbody2D rb;
 
-    private Animator anim;
-
-    private void Start()
-    {
-        anim = GetComponent<Animator>();
-    }
     void Update()
     {
         vertical = Input.GetAxis("Vertical");
         horizontal = Input.GetAxis("Horizontal");
-        anim.SetBool("IsSwimming", isSwimming);
-        anim.SetFloat("DirectionHorizontal", horizontal);
-        anim.SetFloat("DirectionVertical", vertical);
+
     }
 
     private void FixedUpdate()
