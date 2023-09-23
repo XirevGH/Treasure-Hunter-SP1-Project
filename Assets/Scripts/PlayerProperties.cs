@@ -194,6 +194,15 @@ public class PlayerProperties : MonoBehaviour
         Instantiate(jumpParticles, transform.position, jumpParticles.transform.localRotation);
     }
 
+    private void ChainJump()
+    {
+        if (Input.GetButton("Horizontal"))
+        {
+            isClimbing = false;
+            rigidBody.AddForce(new Vector2(0, jumpForce));
+        }
+
+    }
     private void WallJumpRight()
     {
         rigidBody.AddForce(new Vector2(wallHJumpForce, wallVJumpForce));
