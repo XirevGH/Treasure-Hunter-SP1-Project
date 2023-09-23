@@ -179,6 +179,12 @@ public class PlayerProperties : MonoBehaviour
             climbSpeed = climbSpeed * 1.1f;
             PowerUp(other.gameObject);
         }
+
+        if (other.CompareTag("CannonBall"))
+        {
+            TakeDamage(startingHealth);
+            Destroy(other.gameObject);
+        }
     }
 
     private void FlipSprite(bool direction)
