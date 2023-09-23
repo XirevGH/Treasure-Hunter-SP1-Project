@@ -8,14 +8,24 @@ public class PlayerWaterMovement : MonoBehaviour
     private float horizontal;
     private bool isSwimming;
 
+    private float futureTime;
+    private float currentTime;
+    private float intervalTime = 0.4f;
+
     [SerializeField] private float SwimSpeed = 5f;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private AudioClip waterSplash;
+    [SerializeField] private AudioClip swimmingSound;
 
+    private AudioSource audioSource;
     private Animator anim;
 
     private void Start()
     {
+        futureTime = Time.time + intervalTime;
+        currentTime = Time.time;
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -38,7 +48,22 @@ public class PlayerWaterMovement : MonoBehaviour
     {
         if (other.CompareTag("Water"))
         {
+            audioSource.PlayOneShot(waterSplash, 0.2f);
             isSwimming = true;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Water"))
+        {
+            currentTime = Time.time;
+            if (currentTime >= futureTime)
+            {
+                print("huh");
+                futureTime = Time.time + intervalTime;
+                audioSource.PlayOneShot(swimmingSound, 1f);
+            }
+            
         }
     }
 
