@@ -12,7 +12,6 @@ public class PlayerProperties : MonoBehaviour
     [SerializeField] private float jumpForce = 300f;
     [SerializeField] private float moveSpeed = 1f;
     [SerializeField] private Transform leftFoot, rightFoot, leftHand, rightHand, leftSwordWall, rightSwordWall;
-    public Transform spawnPosition;
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private LayerMask whatIsChain;
     [SerializeField] private AudioClip coinPickup, healthPickup, powerUpPickup;
@@ -40,6 +39,7 @@ public class PlayerProperties : MonoBehaviour
     private float verticalValue;
     private float horizontalValue;
 
+
     private bool canMove;
     private float rayDistance = 0.25f;
     public int startingHealth = 5;
@@ -53,6 +53,7 @@ public class PlayerProperties : MonoBehaviour
     private float intervalTime = 0.3f;
     private int step = 0;
 
+    public Transform spawnPosition;
     private Rigidbody2D rigidBody;
     private SpriteRenderer spriteRenderer;
     private Animator anim;
@@ -226,22 +227,18 @@ public class PlayerProperties : MonoBehaviour
         Instantiate(jumpParticles, transform.position, jumpParticles.transform.localRotation);
     }
 
-    private void ChainJump()
-    {
-        if (Input.GetButton("Horizontal"))
-        {
-            isClimbing = false;
-            rigidBody.AddForce(new Vector2(0, jumpForce));
-        }
-
-    }
     private void WallJumpRight()
     {
+        int RandomValue = Random.Range(0, jumpSounds.Length);
+        audioSource.PlayOneShot(jumpSounds[RandomValue], 0.25f);
         rigidBody.AddForce(new Vector2(wallHJumpForce, wallVJumpForce));
+        
     }
 
     private void WallJumpLeft()
     {
+        int RandomValue = Random.Range(0, jumpSounds.Length);
+        audioSource.PlayOneShot(jumpSounds[RandomValue], 0.25f);
         rigidBody.AddForce(new Vector2(-wallHJumpForce, wallVJumpForce));
     }
 
