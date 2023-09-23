@@ -11,12 +11,16 @@ public class EnemyCrabbyMovement : MonoBehaviour
     [SerializeField] private float giveKnocbackForceH = 200f;
     [SerializeField] private float giveKnockbackForceV = 100f;
     [SerializeField] private BoxCollider2D boxCollider1, boxCollider2;
+    [SerializeField] private AudioClip[] deathSounds;
     private SpriteRenderer rend;
     private bool canMove = true;
+
+    private AudioSource audioSource;
 
     void Start()
     {
         rend = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -74,6 +78,8 @@ public class EnemyCrabbyMovement : MonoBehaviour
             GetComponent<Rigidbody2D>().gravityScale = 0;
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             canMove = false;
+            int RandomValue = Random.Range(0, deathSounds.Length);
+            audioSource.PlayOneShot(deathSounds[RandomValue], 0.5f);
             Destroy(gameObject, 0.4f);
         }
     }
