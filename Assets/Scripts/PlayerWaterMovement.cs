@@ -59,7 +59,6 @@ public class PlayerWaterMovement : MonoBehaviour
             currentTime = Time.time;
             if (currentTime >= futureTime)
             {
-                print("huh");
                 futureTime = Time.time + intervalTime;
                 audioSource.PlayOneShot(swimmingSound, 1f);
             }
