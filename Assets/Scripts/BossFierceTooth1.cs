@@ -18,6 +18,10 @@ public class BossFierceTooth1 : MonoBehaviour
     [SerializeField] private BoxCollider2D boxCollider1, boxCollider2;
     [SerializeField] private AudioClip[] hitSounds;
 
+    [SerializeField] private GameObject questBox;
+    [SerializeField] private GameObject quest1;
+    [SerializeField] private GameObject quest2;
+
     [SerializeField] private GameObject movingChain;
 
     private SpriteRenderer rend;
@@ -48,6 +52,8 @@ public class BossFierceTooth1 : MonoBehaviour
 
         if (currentHealth > 0)
         {
+            questBox.SetActive(true);
+            quest1.SetActive(true);
             transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
 
             if (transform.position.x < playerTransform.position.x)
@@ -112,6 +118,8 @@ public class BossFierceTooth1 : MonoBehaviour
             other.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, bounciness));
             chainAnim.SetTrigger("Defeated");
             anim.SetTrigger("Defeated");
+            questBox.SetActive(false);
+            quest1.SetActive(false);
             boxCollider1.enabled = false;
             boxCollider2.enabled = false;
             rb.gravityScale = 0f;
@@ -126,6 +134,8 @@ public class BossFierceTooth1 : MonoBehaviour
 
     private void EscapeFlight()
     {
+        questBox.SetActive(true);
+        quest2.SetActive(true);
         rb.gravityScale = 1f;
         rb.AddForce(new Vector2(jumpX, jumpY));
     }
