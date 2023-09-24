@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class BossFierceTooth1 : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 2.0f;
+    [SerializeField] private float moveSpeed = 20f;
     [SerializeField] private float bounciness = 100f;
+    [SerializeField] private float jumpX = 500f;
+    [SerializeField] private float jumpY = 100f;
     [SerializeField] private int damageGiven = 2;
     [SerializeField] private int damageTaken = 1;
     [SerializeField] private float giveKnocbackForceH = 400f;
@@ -18,7 +20,6 @@ public class BossFierceTooth1 : MonoBehaviour
     private SpriteRenderer rend;
     private Animator anim;
     private Rigidbody2D rb;
-    private bool canMove = true;
     private bool hasBoostedSpeed = false;
     private bool isRunning = false;
     private int currentHealth;
@@ -36,12 +37,23 @@ public class BossFierceTooth1 : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!canMove || FindAnyObjectByType<Drawbridge>().GetComponent<Drawbridge>().bossCanMove1 == false)
+        if (FindAnyObjectByType<Drawbridge>().GetComponent<Drawbridge>().bossCanMove1 == false)
             return;
 
-        transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
-        print(playerTransform.position);
-        print(transform.position);
+        if (currentHealth > 0)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
+
+            if (transform.position.x < playerTransform.position.x)
+            {
+                rend.flipX = true;
+            }
+            if (transform.position.x > playerTransform.position.x)
+            {
+                rend.flipX = false;
+            }
+        }
+
         if(Vector2.Distance(transform.position, playerTransform.position) > 5f && hasBoostedSpeed == false)
         {
             moveSpeed = moveSpeed * 5;
@@ -55,16 +67,6 @@ public class BossFierceTooth1 : MonoBehaviour
             hasBoostedSpeed = false;
             isRunning = false;
         }
-
-        if (transform.position.x < playerTransform.position.x)
-        {
-            rend.flipX = true;
-        }
-        if (transform.position.x > playerTransform.position.x)
-        {
-            rend.flipX = false;
-        }
-
         anim.SetBool("isRunning", isRunning);
     }
 
@@ -105,18 +107,19 @@ public class BossFierceTooth1 : MonoBehaviour
             anim.SetTrigger("Defeated");
             boxCollider1.enabled = false;
             boxCollider2.enabled = false;
-            rb.gravityScale = 0;
+            rb.gravityScale = 0f;
             rb.velocity = Vector2.zero;
-            Invoke("EscapeFlight", 1);
-            canMove = false;
+            rend.flipX = true;
+            Invoke("EscapeFlight", 2);
             int RandomValue = Random.Range(0, hitSounds.Length);
             audioSource.PlayOneShot(hitSounds[RandomValue], 0.5f);
-            Destroy(gameObject, 5f);
+            Destroy(gameObject, 4f);
         }
     }
 
     private void EscapeFlight()
     {
-        rb.velocity = new Vector2(0, 5);
+        rb.gravityScale = 1f;
+        rb.AddForce(new Vector2(jumpX, jumpY));
     }
 }
