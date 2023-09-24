@@ -4166,6 +4166,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1683884933}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &514968355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 514968356}
+  m_Layer: 0
+  m_Name: Placeholder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &514968356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514968355}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.52932, y: 25.754711, z: -1.7372466}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &516825644
 GameObject:
   m_ObjectHideFlags: 0
@@ -89013,6 +89044,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: cannons
+      value: 
+      objectReference: {fileID: 514968355}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 530199419}
@@ -89020,6 +89055,10 @@ PrefabInstance:
       propertyPath: goldCoinsText
       value: 
       objectReference: {fileID: 266344248}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: powerUpPickup
+      value: 
+      objectReference: {fileID: 8300000, guid: f6eea255964e69648999da16ddad605f, type: 3}
     - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
       propertyPath: spawnPosition
       value: 
@@ -89040,6 +89079,18 @@ PrefabInstance:
       propertyPath: chainRJumpForce
       value: 400
       objectReference: {fileID: 0}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: movingPlatforms
+      value: 
+      objectReference: {fileID: 514968355}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: playerBlockBoss2
+      value: 
+      objectReference: {fileID: 514968355}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: powerUpParticles
+      value: 
+      objectReference: {fileID: 514968355}
     - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
       propertyPath: chainSounds.Array.size
       value: 3
@@ -89119,3 +89170,4 @@ SceneRoots:
   - {fileID: 1781082523}
   - {fileID: 633681330}
   - {fileID: 102120295}
+  - {fileID: 514968356}

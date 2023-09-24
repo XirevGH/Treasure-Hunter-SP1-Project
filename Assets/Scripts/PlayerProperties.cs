@@ -14,7 +14,7 @@ public class PlayerProperties : MonoBehaviour
     [SerializeField] private Transform leftFoot, rightFoot, leftHand, rightHand, leftSwordWall, rightSwordWall;
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private LayerMask whatIsChain;
-    [SerializeField] private AudioClip coinPickup, healthPickup, powerUpPickup;
+    [SerializeField] private AudioClip coinPickup, healthPickup, powerUpPickup, keyCollected, treasureOpen;
     [SerializeField] private AudioClip[] jumpSounds;
     [SerializeField] private AudioClip[] walkSounds;
     [SerializeField] private AudioClip[] chainSounds;
@@ -201,9 +201,14 @@ public class PlayerProperties : MonoBehaviour
 
         if (other.CompareTag("Key"))
         {
+            audioSource.PlayOneShot(keyCollected);
             Destroy(other.gameObject);
             keysCollected++;
             Instantiate(keyParticles, other.transform.position, Quaternion.identity);
+        }
+        if (other.CompareTag("Treasure"))
+        {
+            audioSource.PlayOneShot(treasureOpen);
         }
 
         if (other.CompareTag("PowerUpJump"))

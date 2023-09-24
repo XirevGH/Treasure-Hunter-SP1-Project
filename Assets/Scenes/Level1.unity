@@ -418,7 +418,7 @@ Transform:
   m_GameObject: {fileID: 67966981}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.394638, y: 0.01927185, z: 0}
+  m_LocalPosition: {x: 0, y: 0.9999999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1271,7 +1271,7 @@ Transform:
   m_GameObject: {fileID: 109398434}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.07, y: -0.41, z: 0}
+  m_LocalPosition: {x: -29.28, y: -2.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5498,7 +5498,7 @@ Transform:
   m_GameObject: {fileID: 617559700}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.8, y: -4.45, z: 0}
+  m_LocalPosition: {x: -25.25, y: -7.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5917,7 +5917,7 @@ Transform:
   m_GameObject: {fileID: 686394595}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.394638, y: -0.98072827, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46445,6 +46445,37 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!1 &1493986906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1493986907}
+  m_Layer: 0
+  m_Name: Placeholder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1493986907
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493986906}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.52932, y: 25.754711, z: -1.7372466}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1516192688
 GameObject:
   m_ObjectHideFlags: 0
@@ -61527,7 +61558,7 @@ Transform:
   m_GameObject: {fileID: 1968144200}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.394638, y: -1.9807283, z: 0}
+  m_LocalPosition: {x: 0, y: -1.0000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -61635,7 +61666,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -9.393993, y: -0.4893937}
+  m_Offset: {x: -0.0030460358, y: 0.508451}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -61646,7 +61677,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0083694, y: 2.9884849}
+  m_Size: {x: 1.06149, y: 3.0652418}
   m_EdgeRadius: 0
 --- !u!4 &1981995758
 Transform:
@@ -61657,7 +61688,7 @@ Transform:
   m_GameObject: {fileID: 1981995755}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.09, y: -8.82, z: 0}
+  m_LocalPosition: {x: -4.31, y: -9.799, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -63101,13 +63132,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: cannons
+      value: 
+      objectReference: {fileID: 1493986906}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 530199419}
     - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: keyCollected
+      value: 
+      objectReference: {fileID: 8300000, guid: c85ce1996d23db441b2aa23a4fc72a03, type: 3}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: treasureOpen
+      value: 
+      objectReference: {fileID: 8300000, guid: 8964b5b8302330645af499bcbd6aec9a, type: 3}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
       propertyPath: goldCoinsText
       value: 
       objectReference: {fileID: 266344248}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: powerUpPickup
+      value: 
+      objectReference: {fileID: 8300000, guid: f6eea255964e69648999da16ddad605f, type: 3}
     - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
       propertyPath: spawnPosition
       value: 
@@ -63116,6 +63163,22 @@ PrefabInstance:
       propertyPath: healthBarColor
       value: 
       objectReference: {fileID: 118327547}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: questCompleted
+      value: 
+      objectReference: {fileID: 8300000, guid: c85ce1996d23db441b2aa23a4fc72a03, type: 3}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: movingPlatforms
+      value: 
+      objectReference: {fileID: 1493986906}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: playerBlockBoss2
+      value: 
+      objectReference: {fileID: 1493986906}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: powerUpParticles
+      value: 
+      objectReference: {fileID: 1493986906}
     - target: {fileID: 2349683169146993644, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
       propertyPath: m_Name
       value: Player
@@ -63462,3 +63525,4 @@ SceneRoots:
   - {fileID: 1781082523}
   - {fileID: 633681330}
   - {fileID: 102120295}
+  - {fileID: 1493986907}
