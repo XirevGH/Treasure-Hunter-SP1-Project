@@ -55,11 +55,11 @@ public class BossFierceTooth1 : MonoBehaviour
             isRunning = false;
         }
 
-        if (moveSpeed > 0)
+        if (transform.position.x < playerTransform.position.x)
         {
             rend.flipX = true;
         }
-        if (moveSpeed < 0)
+        if (transform.position.x > playerTransform.position.x)
         {
             rend.flipX = false;
         }
