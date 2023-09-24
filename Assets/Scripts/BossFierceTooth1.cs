@@ -17,8 +17,12 @@ public class BossFierceTooth1 : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private BoxCollider2D boxCollider1, boxCollider2;
     [SerializeField] private AudioClip[] hitSounds;
+
+    [SerializeField] private GameObject movingChain;
+
     private SpriteRenderer rend;
     private Animator anim;
+    private Animator chainAnim;
     private Rigidbody2D rb;
     private bool hasBoostedSpeed = false;
     private bool isRunning = false;
@@ -28,6 +32,8 @@ public class BossFierceTooth1 : MonoBehaviour
 
     void Start()
     {
+        chainAnim = movingChain.GetComponent<Animator>();
+
         rend = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
@@ -104,6 +110,7 @@ public class BossFierceTooth1 : MonoBehaviour
         {
             other.GetComponent<Rigidbody2D>().velocity = new Vector2(other.GetComponent<Rigidbody2D>().velocity.x, 0);
             other.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, bounciness));
+            chainAnim.SetTrigger("Defeated");
             anim.SetTrigger("Defeated");
             boxCollider1.enabled = false;
             boxCollider2.enabled = false;
