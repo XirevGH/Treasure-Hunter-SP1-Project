@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossFierceTooth : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class BossFierceTooth : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private BoxCollider2D boxCollider1, boxCollider2;
     [SerializeField] private AudioClip[] hitSounds;
+    [SerializeField] private int levelToLoad;
+
+    [SerializeField] private GameObject completedTheGame;
+    [SerializeField] private GameObject lostTheGame;
 
     private SpriteRenderer rend;
     private Animator anim;
@@ -99,9 +104,12 @@ public class BossFierceTooth : MonoBehaviour
             boxCollider2.enabled = false;
             rb.gravityScale = 0f;
             rb.velocity = Vector2.zero;
-            Invoke("HeavenlyFlight", 2);
+            Invoke("HeavenlyFlight", 2f);
             int RandomValue = Random.Range(0, hitSounds.Length);
             audioSource.PlayOneShot(hitSounds[RandomValue], 0.5f);
+            completedTheGame.SetActive(true);
+            Invoke("displayText", 3f);
+            Invoke("LoadNextLevel", 5f);
             Destroy(gameObject, 10f);
         }
     }
@@ -109,5 +117,13 @@ public class BossFierceTooth : MonoBehaviour
     private void HeavenlyFlight()
     {
         rb.velocity = new Vector2(0, 2);
+    }
+    private void displayText()
+    {
+        lostTheGame.SetActive(true);
+    }
+    private void LoadNextLevel()
+    {
+        SceneManager.LoadScene(levelToLoad);
     }
 }
