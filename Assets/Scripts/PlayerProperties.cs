@@ -36,7 +36,7 @@ public class PlayerProperties : MonoBehaviour
     [SerializeField] private TMP_Text goldCoinsText;
 
     private bool isClimbing;
-
+    public bool bossCanMove = false;
     private float verticalValue;
     private float horizontalValue;
 
@@ -220,6 +220,12 @@ public class PlayerProperties : MonoBehaviour
         if (other.CompareTag("CannonBall"))
         {
             TakeDamage(startingHealth);
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("ActivateBoss"))
+        {
+            bossCanMove = true;
             Destroy(other.gameObject);
         }
     }

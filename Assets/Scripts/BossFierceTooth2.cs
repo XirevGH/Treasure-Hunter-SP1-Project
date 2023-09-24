@@ -14,13 +14,13 @@ public class BossFierceTooth : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private BoxCollider2D boxCollider1, boxCollider2;
     [SerializeField] private AudioClip[] hitSounds;
-    [SerializeField] private GameObject activateBoss2;
+
     private SpriteRenderer rend;
     private Animator anim;
     private Rigidbody2D rb;
     private bool hasBoostedSpeed = false;
     private bool isRunning = false;
-    private bool canMove = false;
+    private bool canMove;
     private int currentHealth;
 
     private AudioSource audioSource;
@@ -32,6 +32,11 @@ public class BossFierceTooth : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         currentHealth = startingHealth;
+    }
+
+    private void Update()
+    {
+        canMove = FindAnyObjectByType<PlayerProperties>().GetComponent<PlayerProperties>().bossCanMove;
     }
 
     void FixedUpdate()
@@ -53,14 +58,14 @@ public class BossFierceTooth : MonoBehaviour
             }
         }
 
-        if (Vector2.Distance(transform.position, playerTransform.position) > 5f && hasBoostedSpeed == false)
+        if (Vector2.Distance(transform.position, playerTransform.position) > 8f && hasBoostedSpeed == false)
         {
             moveSpeed = moveSpeed * 5;
             hasBoostedSpeed = true;
             isRunning = true;
 
         }
-        if (Vector2.Distance(transform.position, playerTransform.position) < 0.5 && hasBoostedSpeed == true)
+        if (Vector2.Distance(transform.position, playerTransform.position) < 3 && hasBoostedSpeed == true)
         {
             moveSpeed = moveSpeed / 5;
             hasBoostedSpeed = false;
@@ -89,10 +94,6 @@ public class BossFierceTooth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (activateBoss2)
-        {
-            canMove = true;
-        }
 
         if (other.CompareTag("Player") && currentHealth > 0)
         {
