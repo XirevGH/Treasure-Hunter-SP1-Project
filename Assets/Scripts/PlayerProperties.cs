@@ -19,6 +19,7 @@ public class PlayerProperties : MonoBehaviour
     [SerializeField] private AudioClip[] walkSounds;
     [SerializeField] private AudioClip[] chainSounds;
     [SerializeField] private GameObject coinParticles, jumpParticles, keyParticles, powerUpParticles;
+    [SerializeField] private GameObject playerBlockBoss2;
 
     //WallJump
     private bool wallCanJumpLeft;
@@ -72,6 +73,8 @@ public class PlayerProperties : MonoBehaviour
 
         futureTimeChain = Time.time + intervalTimeWalk;
         currentTimeChain = Time.time;
+
+        playerBlockBoss2.SetActive(false);
 
         canMove = true;
         currentHealth = startingHealth;
@@ -225,6 +228,7 @@ public class PlayerProperties : MonoBehaviour
 
         if (other.CompareTag("ActivateBoss"))
         {
+            playerBlockBoss2.SetActive(true);
             bossCanMove = true;
             Destroy(other.gameObject);
         }
