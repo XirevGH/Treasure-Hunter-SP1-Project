@@ -19,7 +19,7 @@ public class PlayerProperties : MonoBehaviour
     [SerializeField] private AudioClip[] walkSounds;
     [SerializeField] private AudioClip[] chainSounds;
     [SerializeField] private GameObject coinParticles, jumpParticles, keyParticles, powerUpParticles;
-    [SerializeField] private GameObject playerBlockBoss2, movingPlatforms;
+    [SerializeField] private GameObject playerBlockBoss2, movingPlatforms, cannons;
 
     //WallJump
     private bool wallCanJumpLeft;
@@ -76,6 +76,7 @@ public class PlayerProperties : MonoBehaviour
 
         playerBlockBoss2.SetActive(false);
         movingPlatforms.SetActive(false);
+        cannons.SetActive(false);
 
         canMove = true;
         currentHealth = startingHealth;
@@ -231,6 +232,7 @@ public class PlayerProperties : MonoBehaviour
         {
             playerBlockBoss2.SetActive(true);
             movingPlatforms.SetActive(true);
+            cannons.SetActive(true);
             bossCanMove = true;
             Destroy(other.gameObject);
         }
