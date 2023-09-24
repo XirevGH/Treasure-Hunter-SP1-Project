@@ -106,16 +106,16 @@ public class BossFierceTooth1 : MonoBehaviour
             boxCollider2.enabled = false;
             rb.gravityScale = 0;
             rb.velocity = Vector2.zero;
-            Invoke("EscapeFlight", 2);
+            Invoke("EscapeFlight", 1);
             canMove = false;
             int RandomValue = Random.Range(0, hitSounds.Length);
             audioSource.PlayOneShot(hitSounds[RandomValue], 0.5f);
-            Destroy(gameObject, 8f);
+            Destroy(gameObject, 5f);
         }
     }
 
     private void EscapeFlight()
     {
-        rb.velocity = new Vector2(0, 2);
+        rb.velocity = new Vector2(0, 5);
     }
 }
