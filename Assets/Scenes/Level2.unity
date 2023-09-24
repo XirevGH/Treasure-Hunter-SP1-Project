@@ -89052,6 +89052,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 530199419}
     - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: keyCollected
+      value: 
+      objectReference: {fileID: 8300000, guid: c85ce1996d23db441b2aa23a4fc72a03, type: 3}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: treasureOpen
+      value: 
+      objectReference: {fileID: 8300000, guid: 8964b5b8302330645af499bcbd6aec9a, type: 3}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
       propertyPath: goldCoinsText
       value: 
       objectReference: {fileID: 266344248}

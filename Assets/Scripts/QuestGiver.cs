@@ -8,13 +8,20 @@ public class QuestGiver : MonoBehaviour
     [SerializeField] private GameObject questUI;
     [SerializeField] private GameObject questFindKey;
 
+    private bool hasPickedQuest = false;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
+            hasPickedQuest = true;
             textPopUp.SetActive(true);
-            questUI.SetActive(true);
-            questFindKey.SetActive(true);
+
+            if (!hasPickedQuest)
+            {
+                questUI.SetActive(true);
+                questFindKey.SetActive(true);
+            }
         }
     }
 
