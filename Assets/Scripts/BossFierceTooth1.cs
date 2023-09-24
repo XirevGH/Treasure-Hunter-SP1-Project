@@ -40,7 +40,8 @@ public class BossFierceTooth1 : MonoBehaviour
             return;
 
         transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
-
+        print(playerTransform.position);
+        print(transform.position);
         if(Vector2.Distance(transform.position, playerTransform.position) > 5f && hasBoostedSpeed == false)
         {
             moveSpeed = moveSpeed * 5;
