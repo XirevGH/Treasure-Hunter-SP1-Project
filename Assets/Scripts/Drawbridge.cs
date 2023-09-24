@@ -6,6 +6,7 @@ public class Drawbridge : MonoBehaviour
 {
     private Animator anim;
     private bool hasPlayedAnimation = false;
+    public bool bossCanMove1 = false;
 
     private void Start()
     {
@@ -16,8 +17,9 @@ public class Drawbridge : MonoBehaviour
     {
         if(other.CompareTag("Player") && !hasPlayedAnimation)
         {
+            bossCanMove1 = true;
             hasPlayedAnimation = true;
-            anim.SetTrigger("CloseDrawbridge");
+            anim.SetTrigger("CloseDrawbridge");   
         }
     }
 
