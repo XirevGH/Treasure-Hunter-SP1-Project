@@ -18,8 +18,6 @@ public class BossFierceTooth : MonoBehaviour
     private SpriteRenderer rend;
     private Animator anim;
     private Rigidbody2D rb;
-    private bool hasBoostedSpeed = false;
-    private bool isRunning = false;
     private bool canMove;
     private int currentHealth;
 
@@ -46,6 +44,8 @@ public class BossFierceTooth : MonoBehaviour
 
         if (currentHealth > 0)
         {
+            anim.SetTrigger("BossActivated");
+
             transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
 
             if (transform.position.x < playerTransform.position.x)
@@ -57,21 +57,6 @@ public class BossFierceTooth : MonoBehaviour
                 rend.flipX = false;
             }
         }
-
-        if (Vector2.Distance(transform.position, playerTransform.position) > 8f && hasBoostedSpeed == false)
-        {
-            moveSpeed = moveSpeed * 5;
-            hasBoostedSpeed = true;
-            isRunning = true;
-
-        }
-        if (Vector2.Distance(transform.position, playerTransform.position) < 3 && hasBoostedSpeed == true)
-        {
-            moveSpeed = moveSpeed / 5;
-            hasBoostedSpeed = false;
-            isRunning = false;
-        }
-        anim.SetBool("isRunning", isRunning);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
