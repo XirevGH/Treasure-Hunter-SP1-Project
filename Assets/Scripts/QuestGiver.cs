@@ -14,11 +14,11 @@ public class QuestGiver : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            hasPickedQuest = true;
             textPopUp.SetActive(true);
 
             if (!hasPickedQuest)
             {
+                hasPickedQuest = true;
                 questUI.SetActive(true);
                 questFindKey.SetActive(true);
             }
