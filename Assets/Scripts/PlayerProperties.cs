@@ -404,11 +404,13 @@ public class PlayerProperties : MonoBehaviour
         if (leftHit.collider != null && leftHit.collider.CompareTag("Wall") || rightHit.collider !=null && rightHit.collider.CompareTag("Wall"))
         {
             isWallSliding = true;
+            FindAnyObjectByType<BossFierceTooth>().GetComponent<BossFierceTooth>().boxCollider2.enabled = false;
             return true;
         }
         else
         {
             isWallSliding = false;
+            FindAnyObjectByType<BossFierceTooth>().GetComponent<BossFierceTooth>().boxCollider2.enabled = true;
             return false;
         }
     }
