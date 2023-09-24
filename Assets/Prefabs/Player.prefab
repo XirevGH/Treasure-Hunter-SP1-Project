@@ -350,8 +350,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SwimSpeed: 5
   rb: {fileID: 3301561432394223924}
-  waterSplash: {fileID: 0}
-  swimmingSound: {fileID: 0}
+  waterSplash: {fileID: 8300000, guid: b35181111600df44488b093c60b09b9a, type: 3}
+  swimmingSound: {fileID: 8300000, guid: 286b6d86ce0e45840a010737ca136fd3, type: 3}
 --- !u!1 &1186251581721124926
 GameObject:
   m_ObjectHideFlags: 0
