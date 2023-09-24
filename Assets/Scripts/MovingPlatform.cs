@@ -29,7 +29,7 @@ public class MovingPlatform : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player") && other.transform.position.y < transform.position.y)
+        if (other.gameObject.CompareTag("Player") && other.transform.position.y > transform.position.y)
         {
             other.transform.SetParent(transform);
         }
