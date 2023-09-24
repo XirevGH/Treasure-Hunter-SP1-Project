@@ -13,7 +13,7 @@ public class BossFierceTooth : MonoBehaviour
     [SerializeField] private float giveKnockbackForceV = 200f;
     [SerializeField] private int startingHealth = 3;
     [SerializeField] private Transform playerTransform;
-    [SerializeField] private BoxCollider2D boxCollider1, boxCollider2;
+    public BoxCollider2D boxCollider1, boxCollider2;
     [SerializeField] private AudioClip[] hitSounds;
     [SerializeField] private int levelToLoad;
 
