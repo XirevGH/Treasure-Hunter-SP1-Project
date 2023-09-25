@@ -63179,6 +63179,10 @@ PrefabInstance:
       propertyPath: powerUpParticles
       value: 
       objectReference: {fileID: 1493986906}
+    - target: {fileID: 530891274862988899, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
+      propertyPath: whatIsWall.m_Bits
+      value: 8192
+      objectReference: {fileID: 0}
     - target: {fileID: 2349683169146993644, guid: 53e7ea7223d274c49bf4f48eb5ab5735, type: 3}
       propertyPath: m_Name
       value: Player

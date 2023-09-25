@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerProperties : MonoBehaviour
 {
@@ -404,12 +405,17 @@ public class PlayerProperties : MonoBehaviour
         if (leftHit.collider != null && leftHit.collider.CompareTag("Wall") || rightHit.collider !=null && rightHit.collider.CompareTag("Wall"))
         {
             isWallSliding = true;
-            FindAnyObjectByType<BossFierceTooth>().GetComponent<BossFierceTooth>().boxCollider2.enabled = false;
+            if (SceneManager.GetActiveScene().name == "Level3") 
+            {
+                FindAnyObjectByType<BossFierceTooth>().GetComponent<BossFierceTooth>().boxCollider2.enabled = false;
+            }
             return true;
         }
         else
         {
-            if(FindAnyObjectByType<BossFierceTooth>().GetComponent<BossFierceTooth>().currentHealth <= 0)
+            if (SceneManager.GetActiveScene().name == "Level3")
+            {
+                if (FindAnyObjectByType<BossFierceTooth>().GetComponent<BossFierceTooth>().currentHealth <= 0)
             {
                 FindAnyObjectByType<BossFierceTooth>().GetComponent<BossFierceTooth>().boxCollider2.enabled = false;
                 isWallSliding = false;
@@ -420,6 +426,11 @@ public class PlayerProperties : MonoBehaviour
                 isWallSliding = false;
                 FindAnyObjectByType<BossFierceTooth>().GetComponent<BossFierceTooth>().boxCollider2.enabled = true;
                 return false;
+            }
+            }
+            else 
+            { 
+                return false; 
             }
         }
     }
