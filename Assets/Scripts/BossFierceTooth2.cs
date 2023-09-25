@@ -24,7 +24,7 @@ public class BossFierceTooth : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     private bool canMove;
-    private int currentHealth;
+    public int currentHealth;
 
     private AudioSource audioSource;
 

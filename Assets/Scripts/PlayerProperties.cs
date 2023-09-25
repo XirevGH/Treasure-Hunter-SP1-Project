@@ -409,9 +409,18 @@ public class PlayerProperties : MonoBehaviour
         }
         else
         {
-            isWallSliding = false;
-            FindAnyObjectByType<BossFierceTooth>().GetComponent<BossFierceTooth>().boxCollider2.enabled = true;
-            return false;
+            if(FindAnyObjectByType<BossFierceTooth>().GetComponent<BossFierceTooth>().currentHealth <= 0)
+            {
+                FindAnyObjectByType<BossFierceTooth>().GetComponent<BossFierceTooth>().boxCollider2.enabled = false;
+                isWallSliding = false;
+                return false;
+            }
+            else
+            {
+                isWallSliding = false;
+                FindAnyObjectByType<BossFierceTooth>().GetComponent<BossFierceTooth>().boxCollider2.enabled = true;
+                return false;
+            }
         }
     }
 
